@@ -1,0 +1,177 @@
+<div id="xp-dashboard" style="width: 100%; max-width: 500px; font-family: 'Segoe UI', sans-serif; margin: auto; padding: 20px; background: #fff; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+    
+    <!-- THANH TỔNG (TOTAL XP) -->
+    <div style="margin-bottom: 25px; padding-bottom: 15px; border-bottom: 2px dashed #e2e8f0;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 10px; font-weight: bold; color: #1e293b; font-size: 1.1rem;">
+            <span id="cefr-level">🏆 Tổng quan: Level A2</span>
+            <span id="total-xp-text">Đang tải...</span>
+        </div>
+        <div style="background: #e2e8f0; height: 30px; border-radius: 15px; position: relative; border: 2px solid #cbd5e1;">
+            <div id="total-xp-bar" style="background: linear-gradient(90deg, #f59e0b, #fbbf24); width: 0%; height: 100%; border-radius: 12px; transition: width 1s ease-in-out;"></div>
+            
+            <!-- Checkpoints cho thanh tổng -->
+            <div class="milestone" style="left: 33.33%;"></div>
+            <div class="milestone" style="left: 66.66%;"></div>
+            <div class="milestone" style="left: 100%;"></div>
+        </div>
+    </div>
+
+  <!-- 7 THANH KỸ NĂNG CHI TIẾT -->
+    <div class="skills-grid">
+        
+        <!-- Listening -->
+        <div class="skill-container">
+            <div class="skill-header"><span>🎧 Listening</span><span id="list-text">0/500</span></div>
+            <div class="skill-track"><div id="list-bar" class="skill-fill list-color"></div></div>
+        </div>
+
+        <!-- Reading -->
+        <div class="skill-container">
+            <div class="skill-header"><span>📖 Reading</span><span id="read-text">0/500</span></div>
+            <div class="skill-track"><div id="read-bar" class="skill-fill read-color"></div></div>
+        </div>
+
+        <!-- Writing -->
+        <div class="skill-container">
+            <div class="skill-header"><span>✍️ Writing</span><span id="writ-text">0/500</span></div>
+            <div class="skill-track"><div id="writ-bar" class="skill-fill writ-color"></div></div>
+        </div>
+
+        <!-- Speaking -->
+        <div class="skill-container">
+            <div class="skill-header"><span>🗣️ Speaking</span><span id="speak-text">0/500</span></div>
+            <div class="skill-track"><div id="speak-bar" class="skill-fill speak-color"></div></div>
+        </div>
+
+        <!-- Grammar -->
+        <div class="skill-container">
+            <div class="skill-header"><span>🧩 Grammar</span><span id="gram-text">0/100</span></div>
+            <div class="skill-track"><div id="gram-bar" class="skill-fill gram-color"></div></div>
+        </div>
+
+        <!-- Pronunciation -->
+        <div class="skill-container">
+            <div class="skill-header"><span>🔊 Pronun</span><span id="pron-text">0/440</span></div>
+            <div class="skill-track"><div id="pron-bar" class="skill-fill pron-color"></div></div>
+        </div>
+
+        <!-- Vocabulary -->
+        <div class="skill-container" style="grid-column: span 2;">
+            <div class="skill-header"><span>📚 Vocabulary</span><span id="vocab-text">0/1500</span></div>
+            <div class="skill-track"><div id="vocab-bar" class="skill-fill vocab-color"></div></div>
+        </div>
+
+    </div>
+</div>
+
+<style>
+    /* Reset CSS chuẩn để chống tràn viền */
+    * {
+        box-sizing: border-box;
+    }
+    
+   /* Ép khung nền cao bằng 100% cái hộp của Google Sites */
+    html, body {
+        height: 100%;
+        margin: 0;
+    }
+
+    body {
+        padding: 10px;
+        overflow-x: hidden;
+        display: flex;
+        justify-content: center;
+        box-sizing: border-box;
+    }
+
+    /* ... các đoạn code CSS cũ của Vỹ (milestone, skill-container, v.v.) giữ nguyên bên dưới ... */
+
+    .milestone { position: absolute; top: 0; height: 100%; border-left: 3px solid #ef4444; z-index: 2; }
+    .skill-container { display: flex; flex-direction: column; }
+    .skill-header { display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: bold; color: #475569; margin-bottom: 5px; }
+    .skill-track { background: #e2e8f0; height: 12px; border-radius: 6px; width: 100%; overflow: hidden; }
+    .skill-fill { height: 100%; width: 0%; border-radius: 6px; transition: width 1s ease-in-out; }
+    
+    /* Màu sắc riêng cho từng kỹ năng */
+    .list-color { background: #3b82f6; } /* Xanh dương */
+    .read-color { background: #10b981; } /* Xanh lá */
+    .writ-color { background: #8b5cf6; } /* Tím */
+    .speak-color { background: #f43f5e; } /* Hồng đỏ */
+    .gram-color { background: #0ea5e9; } /* Xanh dương nhạt */
+    .pron-color { background: #f97316; } /* Cam */
+    .vocab-color { background: #14b8a6; } /* Xanh ngọc */
+
+    /* Mặc định trên Mobile (Màn hình nhỏ): Tự động xếp dọc 1 cột */
+    .skills-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    /* Khi màn hình lớn hơn 480px (Laptop/Tablet): Tự động chia 2 cột */
+    @media (min-width: 480px) {
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+    }
+</style>
+
+<script>
+    const url = "https://script.google.com/macros/s/AKfycbyZ4aILI7qUNsPoEPrgTUNFZWisAENCACPfkUps3FPfVeO7bLHNT-ww0Dz2GHBGSWUoNQ/exec?name=Dương Gia Đạt";
+    
+    fetch(url)
+        .then(res => res.json())
+        .then(data => {
+            // CẤU HÌNH ĐIỂM TỐI ĐA CHO TỪNG KỸ NĂNG (Tùy chỉnh theo ý bạn)
+            const targets = {
+                total: 500,
+                listening: 500,
+                reading: 500,
+                writing: 500,
+                speaking: 500,
+                grammar: 100,
+                pronunciation: 440,
+                vocabulary: 1500
+            };
+
+            // Dữ liệu giả lập (Sau này Google Apps Script của bạn phải trả về cục data giống thế này)
+            // Hiện tại mình đang map dữ liệu từ biến data giả, vì API cũ của bạn chỉ trả về 1 biến data.score
+            const currentScores = {
+                total: Math.round(data.score) || 0, // Dùng lại điểm score cũ làm điểm tổng
+                listening: data.listening || 0, 
+                reading: data.reading || 0,
+                writing: data.writing || 0,
+                speaking: data.speaking || 0,
+                grammar: data.grammar || 0,
+                pronunciation: data.pronunciation || 0,
+                vocabulary: data.vocabulary || 0
+            };
+
+            // Hàm cập nhật giao diện (Không cần sửa)
+            function updateBar(idPrefix, currentXP, targetXP) {
+                const percent = Math.min((currentXP / targetXP) * 100, 100);
+                document.getElementById(`${idPrefix}-text`).innerText = `${currentXP} / ${targetXP}`;
+                document.getElementById(`${idPrefix}-bar`).style.width = percent + "%";
+            }
+
+            // Gọi hàm cập nhật cho tất cả 8 thanh
+            updateBar('total-xp', currentScores.total, targets.total);
+            updateBar('list', currentScores.listening, targets.listening);
+            updateBar('read', currentScores.reading, targets.reading);
+            updateBar('writ', currentScores.writing, targets.writing);
+            updateBar('speak', currentScores.speaking, targets.speaking);
+            updateBar('gram', currentScores.grammar, targets.grammar);
+            updateBar('pron', currentScores.pronunciation, targets.pronunciation);
+            updateBar('vocab', currentScores.vocabulary, targets.vocabulary);
+
+            // Logic cảnh báo Milestone cho điểm tổng
+            if (currentScores.total >= 166 && currentScores.total < 322) {
+                document.getElementById('cefr-level').innerText = "🏆 Level A2 (Checkpoint 1 Ready!)";
+            } else if (currentScores.total >= 322) {
+                document.getElementById('cefr-level').innerText = "🏆 Level A2 (Checkpoint 2 Ready!)";
+            }
+        })
+        .catch(error => console.error("Lỗi tải dữ liệu:", error));
+</script>

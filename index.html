@@ -3,7 +3,7 @@
     <!-- THANH TỔNG (TOTAL XP) -->
     <div style="margin-bottom: 25px; padding-bottom: 15px; border-bottom: 2px dashed #e2e8f0;">
         <div style="display: flex; justify-content: space-between; margin-bottom: 10px; font-weight: bold; color: #1e293b; font-size: 1.1rem;">
-            <span id="cefr-level">🏆 Tổng quan: Level A2</span>
+            <span id="cefr-level">🏆 Tổng quan: Level A1</span>
             <span id="total-xp-text">Đang tải...</span>
         </div>
         <div style="background: #e2e8f0; height: 30px; border-radius: 15px; position: relative; border: 2px solid #cbd5e1;">
@@ -21,25 +21,25 @@
         
         <!-- Listening -->
         <div class="skill-container">
-            <div class="skill-header"><span>🎧 Listening</span><span id="list-text">0/500</span></div>
+            <div class="skill-header"><span>🎧 Listening</span><span id="list-text">0/0</span></div>
             <div class="skill-track"><div id="list-bar" class="skill-fill list-color"></div></div>
         </div>
 
         <!-- Reading -->
         <div class="skill-container">
-            <div class="skill-header"><span>📖 Reading</span><span id="read-text">0/500</span></div>
+            <div class="skill-header"><span>📖 Reading</span><span id="read-text">0/0</span></div>
             <div class="skill-track"><div id="read-bar" class="skill-fill read-color"></div></div>
         </div>
 
         <!-- Writing -->
         <div class="skill-container">
-            <div class="skill-header"><span>✍️ Writing</span><span id="writ-text">0/500</span></div>
+            <div class="skill-header"><span>✍️ Writing</span><span id="writ-text">0/0</span></div>
             <div class="skill-track"><div id="writ-bar" class="skill-fill writ-color"></div></div>
         </div>
 
         <!-- Speaking -->
         <div class="skill-container">
-            <div class="skill-header"><span>🗣️ Speaking</span><span id="speak-text">0/500</span></div>
+            <div class="skill-header"><span>🗣️ Speaking</span><span id="speak-text">0/0</span></div>
             <div class="skill-track"><div id="speak-bar" class="skill-fill speak-color"></div></div>
         </div>
 
@@ -57,7 +57,7 @@
 
         <!-- Vocabulary -->
         <div class="skill-container" style="grid-column: span 2;">
-            <div class="skill-header"><span>📚 Vocabulary</span><span id="vocab-text">0/1500</span></div>
+            <div class="skill-header"><span>📚 Vocabulary</span><span id="vocab-text">0/3000</span></div>
             <div class="skill-track"><div id="vocab-bar" class="skill-fill vocab-color"></div></div>
         </div>
 
@@ -119,21 +119,21 @@
 </style>
 
 <script>
-    const url = "https://script.google.com/macros/s/AKfycbyZ4aILI7qUNsPoEPrgTUNFZWisAENCACPfkUps3FPfVeO7bLHNT-ww0Dz2GHBGSWUoNQ/exec?name=Dương Gia Đạt";
+    const url = "https://script.google.com/macros/s/AKfycbyZ4aILI7qUNsPoEPrgTUNFZWisAENCACPfkUps3FPfVeO7bLHNT-ww0Dz2GHBGSWUoNQ/exec?name=Nguyễn Quang Minh";
     
     fetch(url)
         .then(res => res.json())
         .then(data => {
             // CẤU HÌNH ĐIỂM TỐI ĐA CHO TỪNG KỸ NĂNG (Tùy chỉnh theo ý bạn)
             const targets = {
-                total: 500,
-                listening: 500,
-                reading: 500,
-                writing: 500,
-                speaking: 500,
+                total: 100,
+                listening: 0,
+                reading: 0,
+                writing: 0,
+                speaking: 0,
                 grammar: 100,
                 pronunciation: 440,
-                vocabulary: 1500
+                vocabulary: 3000
             };
 
             // Dữ liệu giả lập (Sau này Google Apps Script của bạn phải trả về cục data giống thế này)
